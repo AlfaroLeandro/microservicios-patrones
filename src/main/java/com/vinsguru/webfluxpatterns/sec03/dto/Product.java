@@ -1,9 +1,11 @@
 package com.vinsguru.webfluxpatterns.sec03.dto;
 
-public record ProductResponse(
+public record Product(
+
         Integer id,
         String category,
         String description,
         Integer price
+
 ) {
 }
