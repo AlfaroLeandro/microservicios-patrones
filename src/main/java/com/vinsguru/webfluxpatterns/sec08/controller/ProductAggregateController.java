@@ -1,7 +1,7 @@
-package com.vinsguru.webfluxpatterns.sec06.controller;
+package com.vinsguru.webfluxpatterns.sec08.controller;
 
-import com.vinsguru.webfluxpatterns.sec06.dto.ProductAggregate;
-import com.vinsguru.webfluxpatterns.sec06.service.ProductAggregatorService;
+import com.vinsguru.webfluxpatterns.sec08.dto.ProductAggregate;
+import com.vinsguru.webfluxpatterns.sec08.service.ProductAggregatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/sec06")
+@RequestMapping("/sec08")
 public class ProductAggregateController {
 
     @Autowired

@@ -1,19 +1,17 @@
-package com.vinsguru.webfluxpatterns.sec06.client;
+package com.vinsguru.webfluxpatterns.sec08.client;
 
-import com.vinsguru.webfluxpatterns.sec06.dto.ProductResponse;
+import com.vinsguru.webfluxpatterns.sec08.dto.ProductResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
 
 @Service
 public class ProductClient {
 
     private final WebClient client;
 
-    public ProductClient(@Value("${sec06.product.service}") String baseUrl) {
+    public ProductClient(@Value("${sec08.product.service}") String baseUrl) {
         this.client = WebClient.builder()
                                .baseUrl(baseUrl)
                                .build();
@@ -25,7 +23,6 @@ public class ProductClient {
                 .uri("{id}", id)
                 .retrieve()
                 .bodyToMono(ProductResponse.class)
-                .timeout(Duration.ofMillis(500))
                 .onErrorResume(ex -> Mono.empty());
     }
 

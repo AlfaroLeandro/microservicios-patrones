@@ -1,10 +1,10 @@
-package com.vinsguru.webfluxpatterns.sec06.service;
+package com.vinsguru.webfluxpatterns.sec07.service;
 
-import com.vinsguru.webfluxpatterns.sec06.client.ProductClient;
-import com.vinsguru.webfluxpatterns.sec06.client.ReviewClient;
-import com.vinsguru.webfluxpatterns.sec06.dto.ProductAggregate;
-import com.vinsguru.webfluxpatterns.sec06.dto.ProductResponse;
-import com.vinsguru.webfluxpatterns.sec06.dto.Review;
+import com.vinsguru.webfluxpatterns.sec07.client.ProductClient;
+import com.vinsguru.webfluxpatterns.sec07.client.ReviewClient;
+import com.vinsguru.webfluxpatterns.sec07.dto.ProductAggregate;
+import com.vinsguru.webfluxpatterns.sec07.dto.ProductResponse;
+import com.vinsguru.webfluxpatterns.sec07.dto.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

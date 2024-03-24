@@ -1,4 +1,4 @@
-package com.vinsguru.webfluxpatterns.sec06.dto;
+package com.vinsguru.webfluxpatterns.sec07.dto;
 
 import java.util.List;
 
