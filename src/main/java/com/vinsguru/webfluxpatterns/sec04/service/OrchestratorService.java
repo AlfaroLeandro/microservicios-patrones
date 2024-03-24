@@ -1,10 +1,9 @@
-package com.vinsguru.webfluxpatterns.sec03.service;
+package com.vinsguru.webfluxpatterns.sec04.service;
 
-import com.vinsguru.webfluxpatterns.sec03.client.ProductClient;
-import com.vinsguru.webfluxpatterns.sec03.dto.*;
-import com.vinsguru.webfluxpatterns.sec03.util.DebugUtil;
-import com.vinsguru.webfluxpatterns.sec03.util.OrchestationUtil;
-import org.springframework.aop.scope.ScopedObject;
+import com.vinsguru.webfluxpatterns.sec04.client.ProductClient;
+import com.vinsguru.webfluxpatterns.sec04.dto.*;
+import com.vinsguru.webfluxpatterns.sec04.util.DebugUtil;
+import com.vinsguru.webfluxpatterns.sec04.util.OrchestationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -12,8 +11,6 @@ import reactor.core.publisher.Mono;
 @Service
 public class OrchestratorService {
 
-    @Autowired
-    private ProductClient productClient;
 
     @Autowired
     private OrderFullfillmentService fullfillmentService;
@@ -24,8 +21,6 @@ public class OrchestratorService {
     public Mono<OrderResponse> placeOrder(Mono<OrderRequest> mono) {
         return mono
                 .map(OrchestationRequestContext::new)
-                .flatMap(this::getProduct)
-                .doOnNext(OrchestationUtil::buildRequestContext)
                 .flatMap(fullfillmentService::placeOrder)
                 .doOnNext(this::doOrderPostProcessing)
                 .doOnNext(DebugUtil::print)
@@ -50,13 +45,6 @@ public class OrchestratorService {
                 address,
                 deliveryDate
         );
-    }
-
-    private Mono<OrchestationRequestContext> getProduct(OrchestationRequestContext context) {
-        return this.productClient.getProduct(Long.valueOf(context.getOrderRequest().productId()))
-                .map(Product::price)
-                .doOnNext(context::setProductPrice)
-                .map(_ -> context); //evita que devuelva el contexto con el precio vacio
     }
 
 }

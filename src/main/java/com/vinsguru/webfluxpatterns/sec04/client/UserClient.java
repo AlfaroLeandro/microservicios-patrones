@@ -1,8 +1,8 @@
-package com.vinsguru.webfluxpatterns.sec03.client;
+package com.vinsguru.webfluxpatterns.sec04.client;
 
-import com.vinsguru.webfluxpatterns.sec03.dto.PaymentRequest;
-import com.vinsguru.webfluxpatterns.sec03.dto.PaymentResponse;
-import com.vinsguru.webfluxpatterns.sec03.dto.Status;
+import com.vinsguru.webfluxpatterns.sec04.dto.PaymentRequest;
+import com.vinsguru.webfluxpatterns.sec04.dto.PaymentResponse;
+import com.vinsguru.webfluxpatterns.sec04.dto.Status;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -15,7 +15,7 @@ public class UserClient {
 
     private final WebClient client;
 
-    public UserClient(@Value("${sec03.user.service}") String baseUrl) {
+    public UserClient(@Value("${sec04.user.service}") String baseUrl) {
         this.client = WebClient.builder()
                 .baseUrl(baseUrl)
                 .build();
@@ -40,6 +40,7 @@ public class UserClient {
 
     private PaymentResponse buildErrorResponse(PaymentRequest request) {
         return new PaymentResponse(
+                null,
                 request.userId(),
                 null,
                 request.amount(),
